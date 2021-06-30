@@ -1,0 +1,61 @@
+cabal-version:       >=1.10
+name:                pg-query
+version:             0.1.0.0
+synopsis:            Haskell bindings to libpg_query
+description:         FFI bindings for Haskell to libpg_query
+bug-reports:         https://github.com/heb/pg-query
+license:             BSD3
+license-file:        LICENSE
+author:              David Johnson
+maintainer:          djohnson.m@gmail.com
+copyright:           David Johnson (c) 2020
+category:            Database, Language
+build-type:          Simple
+extra-source-files:  CHANGELOG.md
+
+flag default_paths
+  default:
+    True
+  description:
+    Use default system paths (according to libpg_query Makefile install locations)
+
+executable example
+  main-is:
+    Main.hs
+  build-depends:
+    base < 5,
+    bytestring,
+    pg-query,
+    aeson,
+    aeson-pretty
+  hs-source-dirs:
+    exe
+  default-language:
+    Haskell2010
+
+library
+  exposed-modules:
+    Postgres.Query.Parse
+  other-modules:
+    Postgres.Query.Parse.Internal
+  build-depends:
+    base < 5
+  extra-libraries:
+    pg_query
+  if flag(default_paths)
+    includes:
+      /usr/local/include/pg_query.h
+    include-dirs:
+      /usr/local/include
+    extra-lib-dirs:
+      /usr/local/lib
+  hs-source-dirs:
+    src
+  c-sources:
+    cbits/pg_query_helper.c
+  default-language:
+    Haskell2010
+
+source-repository head
+ type: git
+ location: https://github.com/dmjio/pg-query.git

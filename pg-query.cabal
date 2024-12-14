@@ -7,8 +7,8 @@ bug-reports:         https://github.com/heb/pg-query
 license:             BSD3
 license-file:        LICENSE
 author:              David Johnson
-maintainer:          djohnson.m@gmail.com
-copyright:           David Johnson (c) 2020
+maintainer:          code@dmj.io
+copyright:           David Johnson (c) 2025
 category:            Database, Language
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
